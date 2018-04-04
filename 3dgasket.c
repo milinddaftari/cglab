@@ -13,7 +13,7 @@ void triangle( point a, point b, point c)
 glBegin(GL_POLYGON); 
 	glNormal3fv(a); 
 	glVertex3fv(a); 
-	glVertex3fv(b); 
+	glVertex3fv(b);
 	glVertex3fv(c);
 glEnd(); 
 }
