@@ -3,6 +3,7 @@
 #include<GLUT/glut.h>
 
 GLfloat vertices[][3]= {{-1,-1,-1},{1,-1,-1},{1,1,-1},{-1,1,-1},{-1,-1,1},{1,-1,1},{1,1,1},{-1,1,1}};
+GLfloat normals[][3]= {{-1,-1,-1},{1,-1,-1},{1,1,-1},{-1,1,-1},{-1,-1,1},{1,-1,1},{1,1,1},{-1,1,1}};
 GLfloat colors[][3]= {{0,0,0},{1,0,0},{1,1,0},{0,1,0},{0,0,1},{1,0,1},{1,1,1},{0,1,1}};
 
 void polygon(int a, int b, int c, int d)
@@ -10,12 +11,16 @@ void polygon(int a, int b, int c, int d)
 
 	glBegin(GL_POLYGON);
 	glColor3fv(colors[a]);
+	glNormal3fv(normals[a]);
 	glVertex3fv(vertices[a]);
 	glColor3fv(colors[b]);
+	glNormal3fv(normals[b]);
 	glVertex3fv(vertices[b]);
 	glColor3fv(colors[c]);
+	glNormal3fv(normals[c]);
 	glVertex3fv(vertices[c]);
 	glColor3fv(colors[d]);
+	glNormal3fv(normals[d]);
 	glVertex3fv(vertices[d]);
 	glEnd();
 }

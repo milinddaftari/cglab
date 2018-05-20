@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include<GL/glut.h>
+#include<GLUT/glut.h>
 int fillFlag=0;
 float x1,x2,x3,x4,y1,y2,y3,y4,x5,y5,x6,y6;
 void edgedetect(float x1,float y1,float x2,float y2,int *le,int *re)

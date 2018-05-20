@@ -93,7 +93,7 @@ void bresenham(int x1,int y1,int x2,int y2)
 void myinit()
 {
 	glClearColor(1.0,1.0,1.0,1.0);
-	glPointSize(1.0);
+	glPointSize(5.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0,500,0,500);
@@ -110,14 +110,16 @@ void display()
 int main(int argc,char** argv)
 {
 	printf("Enter Scan Points (x1,y1) ");
-	scanf("%d%d",&x1,&y1);
+	scanf("%d %d",&x1,&y1);
 	printf("Enter Scan Points (x2,y2) ");
-	scanf("%d%d",&x2,&y2);
+	scanf("%d %d",&x2,&y2);
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
 	glutInitWindowSize(500,500);
 	glutInitWindowPosition(50,50);
 	glutCreateWindow("Brezenham");
 	glutDisplayFunc(display);
+	  myinit();
 	glutMainLoop();
 }
+
