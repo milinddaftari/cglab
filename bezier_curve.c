@@ -67,7 +67,7 @@ void display()
 	glPointSize(5.0);
 	glPushMatrix();
 	glLineWidth(5);
-	glColor3f(255.0/255.0,153.0/255.0,51.0/255.0); //orange
+	glColor3f(1.0,0.5,0.0); //orange
 	for(int i=0;i<8;i++)
 	{
 		glTranslatef(0,-0.8,0);
@@ -79,7 +79,7 @@ void display()
 		glTranslatef(0.0,-0.8,0.0);
 		bezier(ctrlpts,nctrlpts,nBezCurvePts);
 	}
-	glColor3f(19.0/255.0,136.0/255.0,8.0/255.0);  //green
+	glColor3f(0.0,0.5,0.0);  //green
 	for(int i=0;i<8;i++)
 	{
 		glTranslatef(0.0,-0.8,0.0);

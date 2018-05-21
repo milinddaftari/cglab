@@ -18,7 +18,7 @@ void bresenham(int x1,int y1,int x2,int y2)
 	int dy=y2-y1;
 	int m=dy/dx;
 
-	if(m>1)
+	if(m<1)
 	{
 		int dp=2*dy-dx;
 		int x=x1;
@@ -59,7 +59,7 @@ void bresenham(int x1,int y1,int x2,int y2)
 			y2=y1;
 		}
 		drawpixel(x,y);
-		while(y<y1)
+		while(y<y2)
 		{
 			if(dp>=0)
 			{
@@ -119,7 +119,7 @@ int main(int argc,char** argv)
 	glutInitWindowPosition(50,50);
 	glutCreateWindow("Brezenham");
 	glutDisplayFunc(display);
-	  myinit();
+	myinit();
 	glutMainLoop();
 }
 
