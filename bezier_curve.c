@@ -2,9 +2,7 @@
 #include<GLUT/glut.h>
 #include<math.h>
 #define pi 3.14
-GLsizei winwidth=600,winht=600;
-GLfloat xwcmin=0.0,xwcmax=130.0,ywcmin=0.0,ywcmax=130.0;
-typedef struct wcpt3d
+typedef struct points
 {
 	GLfloat x,y,z;
 };
@@ -20,7 +18,7 @@ void bino(GLint n,GLint *c)
 			c[i] /= j;
 	}
 }
-void computeBezier(GLfloat u,struct wcpt3d *bezpt,GLint nctrlpts,struct wcpt3d *ctrlpts,GLint *c)
+void computeBezier(GLfloat u,struct points *bezpt,GLint nctrlpts,struct points *ctrlpts,GLint *c)
 {
 	GLint i,n=nctrlpts-1;
 	GLfloat bezBlend;
@@ -33,9 +31,9 @@ void computeBezier(GLfloat u,struct wcpt3d *bezpt,GLint nctrlpts,struct wcpt3d *
 		bezpt->z += ctrlpts[i].z*bezBlend;
 	}
 }
-void bezier(struct wcpt3d *ctrlpts,GLint nctrlpts,GLint nBezCurvePts)
+void bezier(struct points *ctrlpts,GLint nctrlpts,GLint nBezCurvePts)
 {
-	struct wcpt3d bezcurvept;
+	struct points bezcurvept;
 	GLfloat u;
 	GLint *c,k;
 	c=(GLint*)malloc(nctrlpts);
@@ -53,8 +51,8 @@ void bezier(struct wcpt3d *ctrlpts,GLint nctrlpts,GLint nBezCurvePts)
 void display()
 {
 	GLint nctrlpts=4,nBezCurvePts=20;
-	static float theta = 0;
-	struct wcpt3d ctrlpts[4]={{20,100,0},{30,110,0},{50,90,0},{60,100,0}};
+	static float theta = 0.0;
+	struct points ctrlpts[4]={{20,100,0},{30,110,0},{50,90,0},{60,100,0}};
 	ctrlpts[1].x += 10*sin(theta*pi/180.0);
 	ctrlpts[1].y += 5*sin(theta*pi/180.0);
 	ctrlpts[2].x -= 10*sin((theta+30)*pi/180.0);
@@ -63,10 +61,7 @@ void display()
 	ctrlpts[3].y += sin((theta-30)*pi/180.0);
 	theta += 0.10;
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0,1.0,1.0);
-	glPointSize(5.0);
 	glPushMatrix();
-	glLineWidth(5);
 	glColor3f(1.0,0.5,0.0); //orange
 	for(int i=0;i<8;i++)
 	{
@@ -86,7 +81,7 @@ void display()
 		bezier(ctrlpts,nctrlpts,nBezCurvePts);
 	}
 	glPopMatrix();
-	glColor3f(0.7,0.5,0.3);
+	glColor3f(0.7,0.5,0.3); //brown
 	glLineWidth(5);
 	glBegin(GL_LINES);
 		glVertex2f(20,100);
@@ -101,18 +96,17 @@ void winReshapeFunc(GLint newwidth,GLint newht)
 	glViewport(0,0,newwidth,newht);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(xwcmin,xwcmax,ywcmin,ywcmax);
-	glClear(GL_COLOR_BUFFER_BIT);
+	gluOrtho2D(0,130,0,130);
+	glMatrixMode(GL_MODELVIEW);
 }
 int main(int argc,char **argv)
 {
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
 	glutInitWindowPosition(50,50);
-	glutInitWindowSize(winwidth,winht);
+	glutInitWindowSize(600,600);
 	glutCreateWindow("FLAG");
 	glutDisplayFunc(display);
 	glutReshapeFunc(winReshapeFunc);
 	glutMainLoop();
 }
-
