@@ -36,7 +36,7 @@ void bezier(struct points *ctrlpts,GLint nctrlpts,GLint nBezCurvePts)
 	struct points bezcurvept;
 	GLfloat u;
 	GLint *c,k;
-	c=(GLint*)malloc(nctrlpts);
+	c=(GLint*)malloc(nctrlpts);  //in c++ , use c = new GLint[nctrlpts]
 	bino(nctrlpts-1,c);
 	glBegin(GL_LINE_STRIP);
 		for(k=0;k<=nBezCurvePts;k++)
@@ -46,7 +46,7 @@ void bezier(struct points *ctrlpts,GLint nctrlpts,GLint nBezCurvePts)
 			glVertex2f(bezcurvept.x,bezcurvept.y);
 		}
 	glEnd();
-	free(c);
+	free(c); //in c++ , use delete[] c
 }
 void display()
 {
